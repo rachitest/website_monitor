@@ -1,1 +1,4 @@
 .devcontainer
+requirements.txt
+secrets.yml
+.vscode
