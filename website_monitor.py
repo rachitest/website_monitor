@@ -84,5 +84,5 @@ if __name__ == "__main__":
 
     if add_to_cart:
         message_avail(twilio_creds)
-    elif not add_to_cart:
+    else:
         message_unavail(twilio_creds)
