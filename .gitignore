@@ -2,3 +2,6 @@
 secrets.yml
 .vscode
 .replit
+*.toml
+*.lock
+*.breakpoints
