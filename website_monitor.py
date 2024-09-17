@@ -1,12 +1,13 @@
 # %%
+import time
+
+import yaml
 from chromedriver_py import binary_path
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
 from twilio.rest import Client
 
-import time
-import yaml
 
 # %%
 def set_chrome_options():
@@ -87,19 +88,19 @@ def message_maybe(twilio_creds):
 
 # %%
 if __name__ == "__main__":
-  while True:
-    chrome_options = set_chrome_options()
+    while True:
+        chrome_options = set_chrome_options()
 
-    driver = webdriver.Chrome(executable_path = binary_path, options = chrome_options)
+        driver = webdriver.Chrome(executable_path=binary_path, options=chrome_options)
 
-    add_to_cart = check_cart_button(driver)
+        add_to_cart = check_cart_button(driver)
 
-    driver.quit()
+        driver.quit()
 
-    twilio_creds = yaml.load(open("secrets.yml"), Loader=yaml.FullLoader)
+        twilio_creds = yaml.load(open("secrets.yml"), Loader=yaml.FullLoader)
 
-    if add_to_cart:
-        message_avail(twilio_creds)
-    else:
-        message_unavail(twilio_creds)
-    time.sleep(3600)
+        if add_to_cart:
+            message_avail(twilio_creds)
+        else:
+            message_unavail(twilio_creds)
+        time.sleep(3600)
