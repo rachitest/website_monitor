@@ -5,8 +5,8 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
 from twilio.rest import Client
 
+import time
 import yaml
-
 
 # %%
 def set_chrome_options():
@@ -87,9 +87,10 @@ def message_maybe(twilio_creds):
 
 # %%
 if __name__ == "__main__":
+  while True:
     chrome_options = set_chrome_options()
 
-    driver = webdriver.Chrome(executable_path=binary_path, options=chrome_options)
+    driver = webdriver.Chrome(executable_path = binary_path, options = chrome_options)
 
     add_to_cart = check_cart_button(driver)
 
@@ -101,3 +102,4 @@ if __name__ == "__main__":
         message_avail(twilio_creds)
     else:
         message_unavail(twilio_creds)
+    time.sleep(3600)
